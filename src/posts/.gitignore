@@ -1,0 +1,36 @@
+# ---------------------------------------------
+# 1. 민감한 정보 및 세션 데이터 (.obsidian 폴더 내부)
+# ---------------------------------------------
+
+# .obsidian 폴더 내의 모든 것을 무시하는 것이 가장 안전하지만,
+# 플러그인 설정(.json)은 공유하려면 아래 설정을 사용합니다.
+
+.obsidian/workspace.json        # 현재 열려 있는 탭, 창 크기, 레이아웃 등 (개인 설정)
+.obsidian/workspaces.json      # 저장된 작업 공간 (개인 설정)
+.obsidian/starred.json         # 즐겨찾기 목록 (개인 선호도)
+.obsidian/backlinks.json       # 백링크 패널 상태 (세션 데이터)
+.obsidian/history.json         # 파일 열기 기록 (세션 데이터)
+.obsidian/state.json           # 플러그인 또는 뷰 상태 파일 (세션 데이터)
+.obsidian/publish.json         # Obsidian Publish 관련 설정 (민감한 API 키 포함 가능)
+
+# ---------------------------------------------
+# 2. 캐시 및 임시 파일
+# ---------------------------------------------
+
+# Obsidian이 사용하는 캐시 폴더
+.obsidian/cache/
+
+# 노트의 빠른 미리보기를 위한 캐시 파일 (파일 이름이 바뀔 때마다 변경됨)
+.obsidian/dataview/
+.obsidian/plugins/dataview/
+.obsidian/plugins/*/data.json  # 일부 플러그인의 상태/캐시 데이터
+
+# ---------------------------------------------
+# 3. 기타 운영체제 및 편집기 파일
+# ---------------------------------------------
+
+**/.DS_Store                     # macOS 메타데이터
+**/.Spotlight-V100/             # macOS 검색 인덱스
+**/.Trashes/                    # macOS 휴지통
+**/*.swp                        # Vim/Vi 스왑 파일
+#*~                             # Emacs 백업 파일

@@ -1,0 +1,10 @@
+{
+  "titleMessages": [
+    "Story of My Life",
+    "I build a world you can visit.",
+    "The way forward is the only way."
+  ],
+  "titleImageUrl": "/images/title/github-world-building/github-world-building.gif",
+  "maxFileUploadSize": "10MB",
+  "defaultLanguage": "ko"
+}
