@@ -1,7 +1,7 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-import ccs from "@eslint/css"
+import css from "@eslint/css";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -26,15 +26,19 @@ const eslintConfig = [
       "max-lines-per-function": [
         "error",
         {
-          "max": 30,
-          "skipBlankLines": true,
-          "skipComments": true,
-          "IIFEs": true
-        }
+          max: 30,
+          skipBlankLines: true,
+          skipComments: true,
+          IIFEs: true,
+        },
       ],
-      "complexity": ["warn", 10],
-      "max-lines": ["warn", { "max": 400, "skipBlankLines": true, "skipComments": true }]
-    }
+      complexity: ["warn", 10],
+      "max-lines": [
+        "warn",
+        { max: 400, skipBlankLines: true, skipComments: true },
+      ],
+    },
+    extends: ["plugin:primer-react/recommended"],
   },
   /**
    * @title eslint css
