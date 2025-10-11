@@ -5,7 +5,8 @@ import "./globals.css";
 import faviconLight from "@/app/favicon/favicon-light.svg";
 import faviconDark from "@/app/favicon/favicon-dark.svg";
 
-import { PrimerProvider } from "@/app/themes/PrimerProvider";
+import PrimerProvider from "@/app/themes/PrimerProvider";
+import GlobalLayout from "@/components/global/GlobalLayout";
 
 export const metadata: Metadata = {
   title: "Github Blog With Obsidian",
@@ -34,7 +35,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <PrimerProvider>{children}</PrimerProvider>
+        <PrimerProvider>
+          <GlobalLayout>{children}</GlobalLayout>
+        </PrimerProvider>
       </body>
     </html>
   );
