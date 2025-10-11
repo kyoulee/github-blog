@@ -11,7 +11,7 @@ const customTheme = deepmerge(theme, {
   },
 })
 
-export function PrimerProvider({ children }: PropsWithChildren) {
+function PrimerProvider({ children }: PropsWithChildren) {
   return (
     <ThemeProvider colorMode="auto" theme={customTheme} dayScheme="light" nightScheme="dark">
       <BaseStyles>
@@ -20,3 +20,5 @@ export function PrimerProvider({ children }: PropsWithChildren) {
     </ThemeProvider>
   )
 }
+
+export default PrimerProvider
