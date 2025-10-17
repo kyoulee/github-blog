@@ -1,6 +1,4 @@
-import BlogLayout from "@/components/post/postHeader";
-import GlobalLayoutPageHeader from "@/components/global/GlobalPageHeader";
-import { PageLayout, Stack, StateLabel } from "@primer/react/lib";
+import {  Stack, StateLabel } from "@primer/react/lib";
 
 export default function Home() {
   return (

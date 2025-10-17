@@ -10,15 +10,11 @@ type GolbalLayoutSplitProps = {
 
 function GolbalLayoutSplit(props: GolbalLayoutSplitProps) {
   return (
-    <SplitPageLayout>
-      <SplitPageLayout.Pane position="start" hidden={props.hidden} className="bg-[var(--bgColor-success-emphasis)]">
+    <SplitPageLayout className="h-auto">
+      <SplitPageLayout.Pane position="start" hidden={{ wide: props.hidden, narrow: true, regular: true }}>
         {props.childrenNav}
       </SplitPageLayout.Pane>
-      <SplitPageLayout.Content
-        width="full"
-        padding="none"
-        className={`${props.className} bg-[var(--bgColor-success-muted)]`}
-      >
+      <SplitPageLayout.Content width="full" padding="none" className={`${props.className}`}>
         {props.children}
       </SplitPageLayout.Content>
     </SplitPageLayout>

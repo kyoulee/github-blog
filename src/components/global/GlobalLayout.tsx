@@ -8,10 +8,9 @@ import GolbalLayoutSplit from "./GolbalLayoutSplit";
 
 function GlobalLayout({ children }: { children: ReactNode }) {
   const content = useRef<HTMLDivElement>(null);
-  content.current?.scrollTop;
 
   return (
-    <GolbalLayoutSplit childrenNav={GlobalLayoutNav()} className="var(--bgColor-raised-emphasis) relative ">
+    <GolbalLayoutSplit childrenNav={GlobalLayoutNav()} className="relative ">
       <GlobalLayoutHeader content={content} />
       <div className="overflow-scroll h-screen" ref={content}>
         {children}
