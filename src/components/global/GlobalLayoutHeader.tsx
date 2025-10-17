@@ -24,7 +24,7 @@ function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
 
   return (
     <Header
-      className="bg-[var(--bgColor-done-emphasis)] absolute w-full"
+      className="absolute w-full"
       style={{
         transform: `translateY(${-translateYValue}px)`,
         opacity: opacityValue,
