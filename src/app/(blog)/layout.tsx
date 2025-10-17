@@ -3,7 +3,7 @@ import React from "react";
 
 import GlobalLayoutPageHeader from "@/components/global/GlobalPageHeader";
 import BlogHeader from "@/components/blog/BlogHeader";
-import TitleImage from "@/components/libs/Images/TitleImage";
+import TitleImage from "@/components/libs/images/TitleImage";
 import config from "@/../config.json";
 
 type GlobalLayoutPageHeaderProps = {

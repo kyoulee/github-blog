@@ -1,7 +1,11 @@
-import React, { RefObject, useEffect, useState } from "react";
+"use client";
 
+import React, { RefObject, useEffect, useState } from "react";
 import { Header } from "@primer/react";
 import { BellIcon, MarkGithubIcon, PlusIcon } from "@primer/octicons-react";
+
+import useParentWidth from "@/components/libs/view/useParentWidth";
+
 type GlobalLayoutHeaderProps = {
   content: RefObject<HTMLDivElement | null>;
 };
@@ -9,25 +13,40 @@ type GlobalLayoutHeaderProps = {
 function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
   const [translateYValue, setTranslateYValue] = useState<number>(0);
   const [opacityValue, setOpacityValue] = useState<number>(1.0);
+  const [parentWidth, setParentWidth] =  useState<number>(0);
+  
+  useParentWidth({ content: props.content, setParentWidth : setParentWidth });
+  
+  function handleScroll(e: Event) {
+    if (e.type !== "scroll") return;
+
+    const currentScrollTop = window.scrollY;
+    const offsetHeight = window.innerHeight;
+
+    if (currentScrollTop > offsetHeight) {
+      setTranslateYValue(0);
+      setOpacityValue(Math.min((currentScrollTop - offsetHeight) * 0.01, 1));
+      return;
+    }
+    setOpacityValue(1);
+    setTranslateYValue(Math.max(currentScrollTop, 0));
+  }
 
   useEffect(() => {
-    const contentDiv = props.content.current;
-    if (!contentDiv) return;
-    const scrollHandler = handleScroll({ content: props.content, setTranslateYValue, setOpacityValue });
-    contentDiv.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      if (!contentDiv) return;
-      contentDiv.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [props.content]);
+  }, []);
 
   return (
     <Header
-      className="absolute w-full"
+      className="fixed"
       style={{
         transform: `translateY(${-translateYValue}px)`,
         opacity: opacityValue,
+        width: `${parentWidth}px`
       }}
     >
       {/* ------------------ 왼쪽 영역: 로고 및 검색 ------------------ */}
@@ -63,30 +82,6 @@ function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
       </Header.Item>
     </Header>
   );
-}
-
-type handleScrollProps = {
-  content: RefObject<HTMLDivElement | null>;
-  setTranslateYValue: React.Dispatch<React.SetStateAction<number>>;
-  setOpacityValue: React.Dispatch<React.SetStateAction<number>>;
-};
-
-function handleScroll(props: handleScrollProps) {
-  return function (e: Event) {
-    if (!props.content.current) return;
-
-    const currentScrollTop = props.content.current.scrollTop;
-    const offsetHeight = props.content.current.offsetHeight;
-
-    console.log("scrollTop:", currentScrollTop, "offsetHeight:", offsetHeight);
-    if (currentScrollTop > offsetHeight) {
-      props.setTranslateYValue(0);
-      props.setOpacityValue(Math.min((currentScrollTop - offsetHeight) * 0.01, 1));
-      return;
-    }
-    props.setOpacityValue(1);
-    props.setTranslateYValue(Math.max(currentScrollTop, 0));
-  };
 }
 
 export default GlobalLayoutHeader;
