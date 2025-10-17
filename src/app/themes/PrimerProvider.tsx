@@ -3,17 +3,17 @@ import '@primer/primitives/dist/css/functional/themes/dark.css'
 
 import { BaseStyles, ThemeProvider, theme } from '@primer/react'
 import { PropsWithChildren } from 'react'
-import deepmerge from 'deepmerge'
+// import deepmerge from 'deepmerge'
 
-const customTheme = deepmerge(theme, {
-  fonts: {
-    mono: 'MonoLisa, monospace',
-  },
-})
+// const customTheme = deepmerge(theme, {
+//   fonts: {
+//     mono: 'MonoLisa, monospace',
+//   },
+// })
 
 function PrimerProvider({ children }: PropsWithChildren) {
   return (
-    <ThemeProvider colorMode="auto" theme={customTheme} dayScheme="light" nightScheme="dark">
+    <ThemeProvider dayScheme="day" nightScheme="night">
       <BaseStyles>
         {children}
       </BaseStyles>

@@ -1,0 +1,10 @@
+{
+  "BlogMessages": [
+    "Story of My Life",
+    "I build a world you can visit.",
+    "The way forward is the only way."
+  ],
+  "BlogImageUrl": "/images/github/github-world-building/github-world-building.gif",
+  "maxFileUploadSize": "10MB",
+  "defaultLanguage": "ko"
+}
