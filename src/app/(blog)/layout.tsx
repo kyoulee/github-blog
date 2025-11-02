@@ -8,8 +8,6 @@ import config from "@/../config.json";
 
 type GlobalLayoutPageHeaderProps = {
   children: React.ReactNode;
-  className?: string;
-  hidden?: boolean;
 };
 
 export default function BlogLayout(props: GlobalLayoutPageHeaderProps) {

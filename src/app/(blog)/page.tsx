@@ -1,16 +1,14 @@
-import {  Stack, StateLabel } from "@primer/react/lib";
+import BlogInfoBase from "@/components/blog/info/BlogInfoBase";
+import { Stack, StateLabel } from "@primer/react/lib";
+
+import { BellIcon} from "@primer/octicons-react";
 
 export default function Home() {
   return (
-    <div className="bg-red-700 h-dvh w-full">naib
-    
-        <Stack direction="horizontal" align="center" wrap="wrap">
-          <StateLabel status="issueOpened">Open</StateLabel>
-          <StateLabel status="issueDraft">Draft</StateLabel>
-          <StateLabel status="issueClosed">Closed</StateLabel>
-          <StateLabel status="issueClosedNotPlanned">Closed</StateLabel>
-          <StateLabel status="unavailable">Unavailable</StateLabel>
-        </Stack>
-        </div>
+    <div>
+    <Stack>
+      <BlogInfoBase icon={BellIcon} data={100} description="총 방문자" unit="명" />
+    </Stack>
+    </div>
   );
 }
