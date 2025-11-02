@@ -5,6 +5,7 @@
     "The way forward is the only way."
   ],
   "BlogImageUrl": "/images/github/github-world-building/github-world-building.gif",
+  "PostUrl": "/src/posts",
   "maxFileUploadSize": "10MB",
   "defaultLanguage": "ko"
 }

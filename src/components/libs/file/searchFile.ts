@@ -1,0 +1,20 @@
+import fs from 'fs';
+import path from 'path';
+
+function searchFileList(dir: string, fileList: Array<string>, extensions: Array<string>) {
+  const files = fs.readdirSync(dir);
+
+  files.forEach(file => {
+    const fullPath = path.join(dir, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      fileList = searchFileList(fullPath, fileList, extensions);
+    } else if (extensions.includes(path.extname(file).toLowerCase())) {
+      fileList.push(fullPath);
+    }
+  });
+  return fileList;
+}
+
+export function getAllFileCount(dir: string, extensions: Array<string>): number {
+  return searchFileList(path.join(process.cwd(), dir), [], extensions).length
+}
