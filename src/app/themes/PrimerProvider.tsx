@@ -13,7 +13,7 @@ import { PropsWithChildren } from 'react'
 
 function PrimerProvider({ children }: PropsWithChildren) {
   return (
-    <ThemeProvider dayScheme="day" nightScheme="night">
+    <ThemeProvider dayScheme="light" nightScheme="dark_dimmed">
       <BaseStyles>
         {children}
       </BaseStyles>
