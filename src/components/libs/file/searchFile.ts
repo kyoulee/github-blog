@@ -16,5 +16,9 @@ function searchFileList(dir: string, fileList: Array<string>, extensions: Array<
 }
 
 export function getAllFileCount(dir: string, extensions: Array<string>): number {
-  return searchFileList(path.join(process.cwd(), dir), [], extensions).length
+  return searchFileList(path.join(process.cwd(), dir), [], extensions).length;
+}
+
+export function getAllFileList(dir: string, extensions: Array<string>): Array<string> {
+  return searchFileList(path.join(process.cwd(), dir), [], extensions);
 }
