@@ -1,4 +1,7 @@
 {
+  "BlogBaseUrl" : "",
+  "BlogTitle" : "kyoulee blog",
+  "BlogDescription" : "About kyoulee Life",
   "BlogMessages": [
     "Story of My Life",
     "I build a world you can visit.",
