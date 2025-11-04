@@ -7,4 +7,9 @@ tags: [Obsidian, NextJS, Frontmatter]
 
 // 이 아래부터는 본문 내용입니다.
 ## 이 포스트는 옵시디언에서 작성되었습니다.
+
+$$
+S_n = \frac{n(2a + (n-1)d)}{2}
+$$
+
 ...
