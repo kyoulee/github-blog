@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import {} from "next/font/google";
 import "./globals.css";
 
+import 'katex/dist/katex.min.css';
+
 import faviconLight from "@/app/favicon/favicon-light.svg";
 import faviconDark from "@/app/favicon/favicon-dark.svg";
 
