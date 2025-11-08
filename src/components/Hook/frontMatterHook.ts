@@ -2,6 +2,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import { PostFrontMatter } from "@/types/frontmatter";
 
 import config from "@/../config.json";
+import { error, log } from "console";
 
 export type MetadataProps = {
   params: Promise<{ slug: string[] }>;
@@ -29,11 +30,11 @@ export async function createPostMetadata({ params }: MetadataProps, parent: Reso
       : "http://localhost:3000";
 
   try {
-    const { frontmatter } = (await import(`@/posts/${slugPath}.md`)) as { frontmatter: PostFrontMatter };
+    const { frontmatter } = (await import(`@/posts/${slugPath}.md`)) as { frontmatter: PostFrontMatter | undefined };
 
-    const ogTitle = frontmatter.title || config.BlogTitle;
-    const description = frontmatter.description || config.BlogDescription;
-    const ogImage = frontmatter.image || config.BlogImageUrl;
+    const ogTitle = frontmatter ? frontmatter.title || config.BlogTitle : config.BlogTitle;
+    const description = frontmatter ? frontmatter.description || config.BlogDescription : config.BlogDescription;
+    const ogImage = frontmatter ? frontmatter.image || config.BlogImageUrl : config.BlogImageUrl;
 
     return {
       metadataBase: new URL(PROD_URL),
