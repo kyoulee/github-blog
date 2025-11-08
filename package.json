@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@eslint/css": "^0.14.0",
+    "@giscus/react": "^3.1.0",
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.0.1",
