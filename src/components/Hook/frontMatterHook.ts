@@ -1,12 +1,10 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import { PostFrontMatter } from "@/types/frontmatter";
 
 import config from "@/../config.json";
-import { error, log } from "console";
+
 
 export type MetadataProps = {
   params: Promise<{ slug: string[] }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 /**
@@ -20,8 +18,8 @@ export type MetadataProps = {
  * Next.js의 빌드 시스템(Webpack/MDX Loader)에 의존하며,
  * 해당 파일이 빌드 시 존재하고 컴파일된 경우에만 정상 작동합니다.
  */
-export async function createPostMetadata({ params }: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
-  const slug = (await params).slug;
+export async function createPostMetadata(props: MetadataProps): Promise<Metadata> {
+  const slug = (await props?.params).slug;
   const slugPath = slug.join("/");
 
   const PROD_URL =
@@ -30,7 +28,7 @@ export async function createPostMetadata({ params }: MetadataProps, parent: Reso
       : "http://localhost:3000";
 
   try {
-    const { frontmatter } = (await import(`@/posts/${slugPath}.md`)) as { frontmatter: PostFrontMatter | undefined };
+    const { frontmatter } = (await import(`@/posts/${slugPath}.md`)) as MarkdownModuleType;
 
     const ogTitle = frontmatter ? frontmatter.title || config.BlogTitle : config.BlogTitle;
     const description = frontmatter ? frontmatter.description || config.BlogDescription : config.BlogDescription;
