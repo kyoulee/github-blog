@@ -4,7 +4,6 @@ import Giscus from "@giscus/react";
 import config from "@/../config.json";
 import { githubRepoRegex, giscusRepoIdRegex, giscusCategoryIdRegex } from "@/types/regex"
 import GiscusError from "./GiscusError";
-import { checkDiscussionUrlExists } from "./GiscusCheckId";
 
 type GiscusSettingProps = {
   id?: string;
