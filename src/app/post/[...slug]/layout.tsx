@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import PostSlugLayout from "@/components/post/PostSlugLayout";
 import { createPostMetadata, MetadataProps } from "@/components/Hook/frontMatterHook";
 import { getPostSlugs } from '@/components/Hook/slugHook';
+import { MarkdownModuleType } from "@/types/markdown";
 
 
 export function generateStaticParams() {

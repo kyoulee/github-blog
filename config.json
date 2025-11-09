@@ -12,6 +12,8 @@
   "maxFileUploadSize": "10MB",
   "defaultLanguage": "ko",
   "githubId" : "kyoulee",
-  "githubRepo" : "github-blog",
-  "githubDisscutionCategory" : "Posts"
+  "githubRepo" : "github-blog-obsidian",
+  "giscusRepoId" : "R_kgDOQQ4l-g",
+  "giscusCategory" : "Posts",
+  "giscusCategoryId" : "DIC_kwDOQQ4l-s4Cxhtg"
 }
