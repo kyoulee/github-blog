@@ -15,7 +15,9 @@ export default async function PostSlugPage({ params }: PostSlugPageProps) {
 
     return (
       <div>
-        <Post />
+        <article className="markdown-body">
+          <Post />
+        </article>
         <GiscusSetting id={id} />
       </div>
     )
