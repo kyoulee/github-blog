@@ -9,6 +9,7 @@
  * @property {string} [category] 포스트가 속한 카테고리입니다. (선택)
  */
 export interface PostFrontMatter {
+  id? : string;
   title?: string;
   description?: string;
   image?: string;

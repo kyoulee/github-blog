@@ -1,6 +1,7 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
 import config from "@/../config.json";
+import { MarkdownModuleType } from "@/types/markdown";
 
 
 export type MetadataProps = {
