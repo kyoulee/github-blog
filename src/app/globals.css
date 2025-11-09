@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import 'github-markdown-css/github-markdown.css';
 
 :root {
   --background: #ffffff;
