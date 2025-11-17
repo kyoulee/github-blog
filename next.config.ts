@@ -9,11 +9,15 @@ import remarkMath from "remark-math";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 
+import remarkFlowershowWikiLink from "@flowershow/remark-wiki-link";
+
 import rehypeKatex from "rehype-katex";
 import { rehypeGithubAlerts } from "rehype-github-alerts";
 import rehypePrettyCode from "rehype-pretty-code";
 
-import config from "@/../config.json"
+import config from "@/../config.json";
+
+import { wikiLinskUrlResolver } from "@/systems/remark/wikiLinkUrlResolver";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -28,14 +32,11 @@ const withMDX = createMDX({
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "frontmatter" }],
       remarkGfm,
-      [remarkGithub, { repository: config.githubId + '/' + config.githubRepo }],
-      remarkMath
+      [remarkFlowershowWikiLink, { urlResolver: wikiLinskUrlResolver }],
+      [remarkGithub, { repository: config.githubId + "/" + config.githubRepo }],
+      remarkMath,
     ],
-    rehypePlugins: [
-      rehypeKatex,
-      rehypeGithubAlerts,
-      [rehypePrettyCode, { theme: 'github-dark', },]
-    ],
+    rehypePlugins: [rehypeKatex, rehypeGithubAlerts, [rehypePrettyCode, { theme: "github-dark" }]],
   },
 });
 
