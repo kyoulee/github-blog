@@ -1,0 +1,40 @@
+name: Build on Submodule Update
+
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [submodule-updated]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Update Submodules to Latest Commit
+        run: |
+          git submodule update --init --recursive --remote # --remote로 최신 커밋을 가져옵니다.
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' 
+      
+      - name: Install dependencies
+        run: npm ci 
+
+      - name: Build project
+        run: npm run build
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          #cname:  커스텀 도메인(예: example.com)
