@@ -1,16 +1,6 @@
 import fs from "fs";
 import path from "path";
 
-const slugifyPath = (p: string): string => {
-  if (!p) return "";
-  let slug = p.replace(/\\/g, "/");
-  slug = slug
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/-{2,}/g, "-");
-  return slug;
-};
-
 const SOURCE_ROOT = path.join(process.cwd(), "src", "posts");
 const DEST_ROOT = path.join(process.cwd(), "public", "post");
 
@@ -24,8 +14,8 @@ function imagesDir(itemPath: string, relativePathFromSource: string) {
   const filesToCopy = fs.readdirSync(itemPath);
 
   filesToCopy.forEach((file: string) => {
-    const srcFile = path.join(itemPath, file);
-    const slugifiedFileName = slugifyPath(file);
+    const srcFile = path.join(itemPath, "/", file);
+    const slugifiedFileName = file.toLowerCase();
     const destFile = path.join(finalDestDir, slugifiedFileName);
     if (fs.statSync(srcFile).isFile()) {
       console.log(`[Asset Copy] Copying image from \"${srcFile}\" to \"${destFile}\"`);
