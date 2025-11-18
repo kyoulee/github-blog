@@ -1,3 +1,3 @@
-[submodule "src/posts/github-blog-obsidian"]
-	path = src/posts/github-blog-obsidian
+[submodule "src/posts"]
+	path = src/posts
 	url = https://github.com/kyoulee/github-blog-obsidian
