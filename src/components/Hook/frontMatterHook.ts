@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import config from "@/../config.json";
 import { MarkdownModuleType } from "@/types/markdown";
-
+import { getPostModule } from "@/systems/libs/slugifyPathUrl";
 
 export type MetadataProps = {
   params: Promise<{ slug: string[] }>;
@@ -20,16 +20,13 @@ export type MetadataProps = {
  * 해당 파일이 빌드 시 존재하고 컴파일된 경우에만 정상 작동합니다.
  */
 export async function createPostMetadata(props: MetadataProps): Promise<Metadata> {
-  const slug = (await props?.params).slug;
-  const slugPath = slug.join("/");
-
   const PROD_URL =
     config.BlogBaseUrl || process.env.NEXT_PUBLIC_VERCEL_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       : "http://localhost:3000";
 
   try {
-    const { frontmatter } = (await import(`@/posts/${slugPath}.md`)) as MarkdownModuleType;
+    const { frontmatter } = await getPostModule(props.params);
 
     const ogTitle = frontmatter ? frontmatter.title || config.BlogTitle : config.BlogTitle;
     const description = frontmatter ? frontmatter.description || config.BlogDescription : config.BlogDescription;
@@ -53,7 +50,7 @@ export async function createPostMetadata(props: MetadataProps): Promise<Metadata
       },
     };
   } catch (e) {
-    console.error(`Error loading frontmatter for post: ${slugPath}`, e);
+    console.error(`Error loading frontmatter for post: ${(await props.params).slug.join("/")}`, e);
     return {
       title: "Post Not Found",
       description: "요청하신 포스트를 찾을 수 없습니다.",

@@ -7,6 +7,7 @@ import PostSlugLayout from "@/components/post/PostSlugLayout";
 import { createPostMetadata, MetadataProps } from "@/components/Hook/frontMatterHook";
 import { getPostSlugs } from '@/components/Hook/slugHook';
 import { MarkdownModuleType } from "@/types/markdown";
+import { getPostModule } from "@/systems/libs/slugifyPathUrl";
 
 
 export function generateStaticParams() {
@@ -25,17 +26,14 @@ type PostLayoutProps = {
 };
 
 export default async function PostLayout(props: PostLayoutProps) {
-  const slug = (await props.params).slug;
-  const slugPath = slug.join("/");
-
   try {
-    const markdownModule = (await import(`@/posts/${slugPath}.md`)) as MarkdownModuleType;
+    const markdownModule = await getPostModule(props.params);
     return (
       <PostSlugLayout >
         {props.children}
       </PostSlugLayout>)
   } catch (e) {
-    console.error(`Error importing post at path: ${slugPath}`, e);
+    console.error(`Error importing post at path: ${(await props.params).slug.join('/')}`, e);
     notFound()
   };
 }

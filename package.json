@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "git submodule update --init --recursive && node ./src/systems/build/copyImageFiles.ts",
+    "prebuild": "git submodule update --init --recursive --remote && node ./src/systems/build/copyImageFiles.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
