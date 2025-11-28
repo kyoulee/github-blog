@@ -1,10 +1,11 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
 function searchFileList(dir: string, fileList: Array<string>, extensions: Array<string>) {
   const files = fs.readdirSync(dir);
 
-  files.forEach(file => {
+  files.forEach((file) => {
+    if (file.startsWith("_")) return;
     const fullPath = path.join(dir, file);
     if (fs.statSync(fullPath).isDirectory()) {
       fileList = searchFileList(fullPath, fileList, extensions);
