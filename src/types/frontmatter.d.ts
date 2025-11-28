@@ -7,13 +7,17 @@
  * @property {string} [date] 포스트 작성일 또는 최종 수정일입니다 ('YYYY-MM-DD' 형식 권장). (선택)
  * @property {string[]} [tags] 포스트를 분류하는 태그 목록입니다. (선택)
  * @property {string} [category] 포스트가 속한 카테고리입니다. (선택)
+ * @property {string} [readtime] 포스트의 예상 읽기 시간입니다. (선택)
+ * @property {string} [id] 포스트의 고유 식별자입니다. (선택)
  */
 export interface PostFrontMatter {
   id? : string;
+  author? : string;
   title?: string;
   description?: string;
   image?: string;
   date?: string;
   tags?: string[];
   category?: string; 
+  readtime? : string;
 }
