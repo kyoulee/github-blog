@@ -1,47 +1,29 @@
-"use client";
-
 import React from "react";
 import PostTableOfContent from "@/components/post/PostTableOfContent";
-import { PageLayout } from "@primer/react/lib";
-import PostHeader from "./header/PostHeader";
-import { getPostModule } from "@/systems/libs/slugifyPathUrl";
-import GiscusSetting from "@/components/post/giscus/GiscusSetting";
+
+import {
+  PageLayout,
+} from "@primer/react"; 
+import PageLayoutFooterWrapper, { PageLayoutContentWrapper, PageLayoutHeaderWrapper } from "../libs/primer/PageLayoutWrapper";
 
 type PostSlugLayoutProps = {
   children: React.ReactNode;
-  slug: Promise<{ slug: string[] }>;
+  Header: React.ReactNode;
+  Footer: React.ReactNode;
 };
 
+// async 키워드는 서버 컴포넌트에서만 가능하므로 그대로 유지합니다.
 async function PostSlugLayout(props: PostSlugLayoutProps) {
-  const markdownModule = await getPostModule(props.slug);
-
-  const id = markdownModule.frontmatter?.id ?? undefined;
-  const title = markdownModule.frontmatter?.title ?? "Default Title";
-  const image = markdownModule.frontmatter?.image ?? null;
-  const date = markdownModule.frontmatter?.date ?? null;
-  const author = markdownModule.frontmatter?.author ?? "kyoulee";
-  const readTime = markdownModule.frontmatter?.readtime ?? null;
-  const tags = markdownModule.frontmatter?.tags ?? ["kyoulee", "blog", "default"];
-
   return (
     <PageLayout style={{ padding: 0 }}>
       <PostTableOfContent />
-      <PageLayout.Header style={{ marginBottom: "0", marginTop: "0" }}>
-        <PostHeader
-          slug={props.slug}
-          author={author}
-          date={date}
-          title={title}
-          image={image}
-          readTime={readTime}
-          tags={tags}
-        />
-      </PageLayout.Header>
-      <PageLayout.Content padding="none">{props.children}</PageLayout.Content>
-      <PageLayout.Footer style={{ marginTop: "0" }}>
-        <GiscusSetting id={id} />
-        <div className="h-dvh bg-white">footer</div>
-      </PageLayout.Footer>
+      <PageLayoutHeaderWrapper style={{ marginBottom: "0", marginTop: "0" }}>
+        {props.Header}
+      </PageLayoutHeaderWrapper>
+      <PageLayoutContentWrapper padding="none">{props.children}</PageLayoutContentWrapper>
+      <PageLayoutFooterWrapper style={{ marginTop: "0" }}>
+        {props.Footer}
+      </PageLayoutFooterWrapper>
     </PageLayout>
   );
 }

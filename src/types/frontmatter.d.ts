@@ -11,7 +11,7 @@
  * @property {string} [id] 포스트의 고유 식별자입니다. (선택)
  */
 export interface PostFrontMatter {
-  id? : string;
+  id? : number;
   author? : string;
   title?: string;
   description?: string;

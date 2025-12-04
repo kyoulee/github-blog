@@ -6,7 +6,6 @@ import { PencilIcon, RepoIcon, StopwatchIcon, TagIcon } from "@primer/octicons-r
 import headerStyle from "@/styles/header/headerStyle.module.css";
 
 type PostHeaderProps = {
-  slug: Promise<{ slug: string[] }>;
   author: string;
   title: string;
   image: string | null;
@@ -22,22 +21,22 @@ async function PostHeader(props: PostHeaderProps) {
         <div className={headerStyle.title}>default Title</div>
         <div className={headerStyle.meta}>
           <div className={headerStyle.metaItem}>
-            <RepoIcon className={headerStyle.icon}/>
+            <RepoIcon className={headerStyle.icon} />
             <span>{props.date ?? "2025-01-01 00:00"}</span>
           </div>
           <div className={headerStyle.metaItem}>
-            <PencilIcon className={headerStyle.icon}/>
+            <PencilIcon className={headerStyle.icon} />
             <span>{props.author}</span>
           </div>
           <div className={headerStyle.metaItem}>
-            <StopwatchIcon className={headerStyle.icon}/>
+            <StopwatchIcon className={headerStyle.icon} />
             <span>{props.readTime ?? "N/A"}</span>
           </div>
         </div>
         <div className={headerStyle.tags}>
           {props.tags.slice(0, 5).map((tag) => (
             <div key={tag} className={headerStyle.tag}>
-              <TagIcon className={headerStyle.icon}/>
+              <TagIcon className={headerStyle.icon} />
               {tag}
             </div>
           ))}

@@ -6,7 +6,7 @@ import { githubRepoRegex, giscusRepoIdRegex, giscusCategoryIdRegex } from "@/typ
 import GiscusError from "./GiscusError";
 
 type GiscusSettingProps = {
-  id?: string;
+  id?: number;
 };
 
 function GiscusSetting({ id }: GiscusSettingProps) {
@@ -47,7 +47,7 @@ function GiscusSetting({ id }: GiscusSettingProps) {
       category={giscusCategory}
       categoryId={giscusCategoryId}
       mapping="number"
-      term={id || "1"}
+      term={id?.toString() || "1"}
       strict="0"
       reactionsEnabled="1"
       emitMetadata="0"
