@@ -5,8 +5,12 @@ type PostSlugPageProps = {
 };
 
 export default async function PostSlugPage({ params }: PostSlugPageProps) {
+  
+  const slugOrigin = (await params).slug;
+  const slug: string[] = slugOrigin.map(segment => decodeURIComponent(segment));
+  
   try {
-    const markdownModule = await getPostModule(params);
+    const markdownModule = await getPostModule(slug);
     const Post = markdownModule.default;
 
     return (

@@ -26,7 +26,8 @@ export async function createPostMetadata(props: MetadataProps): Promise<Metadata
       : "http://localhost:3000";
 
   try {
-    const { frontmatter } = await getPostModule(props.params);
+    const slug = (await props.params).slug
+    const { frontmatter } = await getPostModule(slug);
 
     const ogTitle = frontmatter ? frontmatter.title || config.BlogTitle : config.BlogTitle;
     const description = frontmatter ? frontmatter.description || config.BlogDescription : config.BlogDescription;

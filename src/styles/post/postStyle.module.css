@@ -1,0 +1,61 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 40px 0;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.link, .emptyLink {
+    flex: 1; 
+    padding: 15px;
+}
+
+.link:hover {
+    background-color: #f9f9f9;
+    border-color: #bbb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.link {
+    background-color: #111;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.prev {
+    text-align: left;
+}
+
+.next {
+    text-align: right;
+}
+
+.label {
+    font-size: 0.85em;
+    color: #888;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.title {
+    font-size: 1.1em;
+    font-weight: 700;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prev .title {
+    text-align: left;
+}
+
+.next .title {
+    text-align: right;
+}

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "git submodule update --init --recursive --remote && node ./src/systems/build/copyImageFiles.ts",
+    "prebuild": "node ./src/systems/build/copyImageFiles.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -23,7 +23,7 @@
     "@types/mdx": "^2.0.13",
     "eslint-plugin-primer-react": "^8.2.1",
     "github-markdown-css": "^5.8.1",
-    "next": "15.5.4",
+    "next": "^15.5.7",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "rehype-github-alerts": "^4.1.1",
