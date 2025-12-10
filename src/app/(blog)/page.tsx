@@ -3,6 +3,7 @@ import { Stack, StateLabel } from "@primer/react/lib";
 
 import { BellIcon} from "@primer/octicons-react";
 import BlogInfoPost from "@/components/blog/info/BlogInfoPost";
+import BlogInfoLike from "@/components/blog/info/BlogInfoLike";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
     <Stack>
       <BlogInfoBase icon={BellIcon} data={100} description="총 방문자" unit="명" />
       <BlogInfoPost />
+      <BlogInfoLike />
     </Stack>
     </div>
   );
