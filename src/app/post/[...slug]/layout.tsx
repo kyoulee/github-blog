@@ -38,7 +38,7 @@ export default async function PostLayout(props: PostLayoutProps) {
   const id = markdownModule.frontmatter?.id ?? undefined;
   const title = markdownModule.frontmatter?.title ?? "Default Title";
   const image = markdownModule.frontmatter?.image ?? null;
-  const date = markdownModule.frontmatter?.date ?? null;
+  const date = markdownModule.frontmatter?.created ?? null;
   const author = markdownModule.frontmatter?.author ?? "kyoulee";
   const readTime = markdownModule.frontmatter?.readtime ?? null;
   const tags = markdownModule.frontmatter?.tags ?? ["kyoulee", "blog", "default"];
