@@ -3,25 +3,9 @@ import React from "react";
 import { getFileListInDirectory } from "@/components/libs/file/searchFile";
 import config from "@/../config.json";
 import path from "path";
-import { getPostModule } from "@/systems/libs/slugifyPathUrl";
 import Link from "next/link";
-import { createSlugFromFilePath } from "@/components/Hook/slugHook";
 import styles from "@/styles/post/postStyle.module.css";
-
-async function getPostsData(fileNames: string[]) {
-  return await Promise.all(
-    fileNames.map(async (filePath) => {
-      const slug = createSlugFromFilePath(filePath);
-      try {
-        const { frontmatter } = await getPostModule(slug);
-        return { slug, frontmatter };
-      } catch (e) {
-        console.error(`Error processing post module for slug: ${slug}`, e);
-        return null;
-      }
-    }),
-  );
-}
+import { getPostsData } from "@/components/libs/file/FileData";
 
 type NaviLinkProps = {
   url: string;

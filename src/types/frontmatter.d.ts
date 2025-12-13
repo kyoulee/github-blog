@@ -16,7 +16,7 @@ export interface PostFrontMatter {
   title?: string;
   description?: string;
   image?: string;
-  date?: string;
+  created?: string;
   tags?: string[];
   category?: string; 
   readtime? : string;
