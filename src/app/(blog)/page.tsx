@@ -4,6 +4,7 @@ import BlogInfoPost from "@/components/blog/info/BlogInfoPost";
 import BlogInfoLike from "@/components/blog/info/BlogInfoLike";
 import BlogInfoDay from "@/components/blog/info/BlogInfoDay";
 import Postlists from "@/components/blog/postlists/PostLists";
+import GithubFollow from "@/components/blog/githubFollow/GithubFollow";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         </div>
       </div>
       <Postlists />
+      <GithubFollow />
     </div>
   );
 }
