@@ -12,6 +12,7 @@ interface GithubUser {
 const GITHUB_API_URL: string = `https://api.github.com/users/${config.githubId}/followers?per_page=100`;
 
 async function GithubFollowersList() {
+  
   let users: GithubUser[] = [
     { login: 'github', avatar_url: 'https://avatars.githubusercontent.com/u/9919?v=4', html_url: 'https://github.com/github' },
     { login: 'kyoulee', avatar_url: 'https://avatars.githubusercontent.com/u/155470241?v=4', html_url: 'https://github.com/kyoulee' },
