@@ -1,10 +1,11 @@
 import React from 'react'
+import GithubFollower from './GithubFollower'
 
 function GithubFollow() {
   return (
     <div>
       <div>following</div>
-      <div>follower</div>
+      <GithubFollower />
     </div>
   )
 }
