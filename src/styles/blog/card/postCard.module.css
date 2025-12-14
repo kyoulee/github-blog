@@ -140,12 +140,12 @@
 .largePostTitle {
     font-size: 1.5rem; 
     margin-bottom: 0.5rem;
-    -webkit-line-clamp: 2;
+    line-clamp: 2;
 }
 
 .largePostSummary {
     font-size: 1rem;
-    -webkit-line-clamp: 3;
+    line-clamp: 3;
 }
 
 
