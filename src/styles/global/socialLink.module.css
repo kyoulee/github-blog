@@ -1,0 +1,27 @@
+.socialLinksContainer {
+    display: flex;
+    gap: 16px;
+}
+
+.socialLinkItem {
+
+}
+
+.socialLink {
+    cursor: pointer;
+    color: #6e7781;
+    transition: color 0.2s ease-in-out;
+}
+
+.socialLinkItem a {
+    text-decoration: none;
+    display: block;
+}
+
+.socialLinkItem a:hover .socialLink {
+    color: #c9d1d9; 
+}
+
+.socialLinkItem a:visited .socialLink {
+    color: #6e7781;
+}
