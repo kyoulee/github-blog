@@ -1,0 +1,22 @@
+.footerContainer {
+    width: 100%;
+    height: auto;
+    padding: 25px 20px;
+    border-top: 1px solid #30363d; 
+    background-color: #161b22; 
+}
+
+.footerContentWrapper {
+    max-width: 1280px; 
+    margin: 0 auto; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    min-height: 40px;
+}
+
+.copyrightText {
+    font-size: 13px;
+    color: #8b949e; 
+    margin: 0; 
+}

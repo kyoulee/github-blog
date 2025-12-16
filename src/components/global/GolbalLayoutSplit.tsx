@@ -5,6 +5,7 @@ type GolbalLayoutSplitProps = {
   className?: string;
   hidden?: boolean;
   childrenNav?: ReactNode;
+  childrenFooter?: ReactNode;
   children?: ReactNode;
 };
 
@@ -17,6 +18,9 @@ function GolbalLayoutSplit(props: GolbalLayoutSplitProps) {
       <SplitPageLayout.Content width="full" padding="none" className={`${props.className}`}>
         {props.children}
       </SplitPageLayout.Content>
+      <SplitPageLayout.Footer  padding="none">
+        {props.childrenFooter}
+      </SplitPageLayout.Footer>
     </SplitPageLayout>
   );
 }

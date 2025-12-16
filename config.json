@@ -15,5 +15,15 @@
   "githubRepo" : "github-blog-obsidian",
   "giscusRepoId" : "R_kgDOQQ4l-g",
   "giscusCategory" : "Posts",
-  "giscusCategoryId" : "DIC_kwDOQQ4l-s4Cxhtg"
+  "giscusCategoryId" : "DIC_kwDOQQ4l-s4Cxhtg",
+  "socialLinks": {
+    "github": "https://github.com/kyoulee",
+    "linkedin": "#",
+    "twitter": "",  
+    "facebook": "",
+    "instagram": "",
+    "youtube": "https://www.youtube.com/@kyoulee42",
+    "twitch": "",
+    "email": "mailto:kyoulee@gmail.com"
+  }
 }
