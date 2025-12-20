@@ -29,6 +29,21 @@ function searchFiles(dir: string, fileList: Array<string>, extensions: Array<str
   return fileList;
 }
 
+function searchDirList(dir: string, dirList: Array<string> = []) {
+  const files = fs.readdirSync(dir);
+
+  files.forEach((file) => {
+    if (file.startsWith("_") || file === "images") return;
+    const fullPath = path.join(dir, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      dirList.push(fullPath);
+      searchDirList(fullPath, dirList);
+    }
+  });
+
+  return dirList;
+}
+
 export function getAllFileCount(dir: string, extensions: Array<string>): number {
   return searchFileList(path.join(process.cwd(), dir), [], extensions).length;
 }
@@ -39,4 +54,8 @@ export function getAllFileList(dir: string, extensions: Array<string>): Array<st
 
 export function getFileListInDirectory(dir: string, extensions: Array<string>): Array<string> {
   return searchFiles(path.join(process.cwd(), dir), [], extensions);
+}
+
+export function getAllDirList(dir: string): Array<string> {
+  return searchDirList(path.join(process.cwd(), dir), [])
 }

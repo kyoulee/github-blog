@@ -5,6 +5,7 @@ import BlogInfoLike from "@/components/blog/info/BlogInfoLike";
 import BlogInfoDay from "@/components/blog/info/BlogInfoDay";
 import Postlists from "@/components/blog/postlists/PostLists";
 import GithubFollow from "@/components/blog/githubFollow/GithubFollow";
+import { CategoryLists } from "@/components/card/CategoryCard";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
             <BlogInfoDay />
           </div>
           <div className="text-center">
-            <p className="text-4xl m-2 font-bold">
+            <p className="text-4xl m-2 font-¡bold">
               🌍 또 하나의{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">세계</span>에
               오신것을 환영합니다. 🚀
@@ -28,6 +29,7 @@ export default function Home() {
         </div>
       </div>
       <Postlists />
+      <CategoryLists />
       <GithubFollow />
     </div>
   );

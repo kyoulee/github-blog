@@ -1,7 +1,7 @@
 import path from "path";
 
 import config from "@/../config.json";
-import { getAllFileList } from "@/components/libs/file/searchFile";
+import { getAllDirList, getAllFileList } from "@/components/libs/file/searchFile";
 
 /**
  * 모든 MDX/Markdown 포스트 파일 경로를 스캔하여 Next.js의 동적 라우팅
@@ -52,4 +52,26 @@ export function createSlugFromFilePath(filePath: string): string[] {
   const encodedSlugArray = slugArray.map(segment => encodeURIComponent(segment));
 
   return dir ? [...dir.split(path.sep), encodeURIComponent(name)] : [encodeURIComponent(name)];
+}
+
+export function getCategorySlugs(): { slug: string[] }[] {
+  const isDev = process.env.NODE_ENV === 'development';
+
+  const categorySlugs = getAllDirList(config.PostDir).map((dirPath) => {
+    const dirsRelativePath = path.relative(path.join(process.cwd(), "src", "posts"), dirPath);
+    const dirNameWithoutExt = dirsRelativePath.replace(/\.(md|mdx)$/, "");
+    const normalizedPath = dirNameWithoutExt.replace(/\\/g, '/');
+    const slugArray = normalizedPath.split('/');
+
+    const encodedSlugArray = slugArray.map(segment => {
+      if (isDev)
+        return encodeURIComponent(segment)
+      else
+        return segment;
+    });
+
+    return { slug: encodedSlugArray };
+  })
+
+  return categorySlugs;
 }

@@ -1,0 +1,67 @@
+/* components/blog/categorylists/category.module.css */
+
+.section {
+    margin: 60px 0;
+}
+
+.header {
+    margin-bottom: 24px;
+}
+
+.sectionTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #c9d1d9;
+    margin-bottom: 8px;
+}
+
+.sectionDesc {
+    color: #8b949e;
+    font-size: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.categoryCard {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.categoryCard:hover {
+    border-color: #58a6ff;
+    background-color: #1c2128;
+    transform: translateY(-2px);
+}
+
+.iconWrapper {
+    margin-right: 16px;
+    color: #8b949e;
+}
+
+.categoryCard:hover .iconWrapper {
+    color: #58a6ff;
+}
+
+.categoryName {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #c9d1d9;
+    margin: 0;
+}
+
+.viewLink {
+    font-size: 0.8rem;
+    color: #6e7681;
+    margin-top: 4px;
+    display: block;
+}
