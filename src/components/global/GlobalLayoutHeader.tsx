@@ -2,10 +2,12 @@
 
 import React, { RefObject, useEffect, useState } from "react";
 import { Header } from "@primer/react";
-import { BellIcon, MarkGithubIcon, PlusIcon } from "@primer/octicons-react";
+import { BellIcon, CodeOfConductIcon, MarkGithubIcon, HeartIcon } from "@primer/octicons-react";
+import config from "@/../config.json"
 
-import useParentWidth from "@/components/libs/view/useParentWidth";
+import { usePathname } from "next/navigation";
 
+import styles from "@/styles/global/globalLayoutHeader.module.css"
 type GlobalLayoutHeaderProps = {
   content: RefObject<HTMLDivElement | null>;
 };
@@ -13,10 +15,10 @@ type GlobalLayoutHeaderProps = {
 function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
   const [translateYValue, setTranslateYValue] = useState<number>(0);
   const [opacityValue, setOpacityValue] = useState<number>(1.0);
-  const [parentWidth, setParentWidth] =  useState<number>(0);
-  
-  useParentWidth({ content: props.content, setParentWidth : setParentWidth });
-  
+  const nickName = config.githubId;
+  const pathname = usePathname();
+  const isPostPage = pathname?.startsWith('/post/');
+
   function handleScroll(e: Event) {
     if (e.type !== "scroll") return;
 
@@ -41,45 +43,55 @@ function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
   }, []);
 
   return (
-    <Header
-      className="fixed"
+    <Header className={`${styles.headerContainer}`}
       style={{
         transform: `translateY(${-translateYValue}px)`,
         opacity: opacityValue,
-        width: `${parentWidth}px`
       }}
     >
-      {/* ------------------ 왼쪽 영역: 로고 및 검색 ------------------ */}
-      <Header.Item>
-        <Header.Link href="#">
-          <MarkGithubIcon size={32} />
-        </Header.Link>
-      </Header.Item>
-      <Header.Item>
-        <Header.Link href="#">left</Header.Link>
-      </Header.Item>
-
-      {/* ------------------ 중앙 영역: 네비게이션 링크 ------------------ */}
+      {/* ------------------ 왼쪽 영역 ------------------ */}
+      <div className="flex">
+        <Header.Item>
+          <Header.Link href="#">
+            <MarkGithubIcon size={32} />
+          </Header.Link>
+        </Header.Item>
+        <Header.Item>
+          <Header.Link href="/post">Post</Header.Link>
+        </Header.Item>
+        <Header.Item>
+          <Header.Link href="/profile">Profile</Header.Link>
+        </Header.Item>
+      </div>
+      {/* ------------------ 중앙 영역 ------------------ */}
       <Header.Item full className="justify-center">
         <Header.Item>
-          <Header.Link href="#">center</Header.Link>
+          <Header.Link href="/">{nickName} Blog</Header.Link>
         </Header.Item>
       </Header.Item>
-
-      {/* ------------------ 오른쪽 영역: 알림 및 기타 액션 ------------------ */}
-      <Header.Item>
-        <Header.Link href="#">right</Header.Link>
-      </Header.Item>
-      <Header.Item>
-        <Header.Link href="#" aria-label="Notifications">
-          <BellIcon />
-        </Header.Link>
-      </Header.Item>
-      <Header.Item>
-        <Header.Link href="#" aria-label="Create new...">
-          <PlusIcon />
-        </Header.Link>
-      </Header.Item>
+      {/* ------------------ 오른쪽 영역 ------------------ */}
+      {isPostPage ?
+        <div>
+          <Header.Item>
+            <Header.Link>
+              <HeartIcon />
+            </Header.Link>
+          </Header.Item>
+        </div>
+        :
+        <div className="flex">
+          <Header.Item>
+            <Header.Link href={`https://github.com/${nickName}?tab=followers`}>
+              <CodeOfConductIcon />
+            </Header.Link>
+          </Header.Item>
+          <Header.Item>
+            <Header.Link >
+              <BellIcon />
+            </Header.Link>
+          </Header.Item>
+        </div>
+      }
     </Header>
   );
 }
