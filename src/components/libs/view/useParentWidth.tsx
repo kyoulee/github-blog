@@ -1,3 +1,5 @@
+"use client"
+
 import React, { RefObject, useEffect, useState } from "react";
 
 type useParentWidthProps = {
@@ -11,7 +13,6 @@ function useParentWidth(props: useParentWidthProps) {
   useEffect(() => {
     const element = contentRef.current;
     if (!element) return;
-
     const observer = new ResizeObserver((entries) => {
       props.setParentWidth(entries[0].contentRect.width);
     });
@@ -20,7 +21,7 @@ function useParentWidth(props: useParentWidthProps) {
       observer.unobserve(element);
       observer.disconnect();
     };
-  }, [contentRef]);
+  }, [contentRef, ]);
 }
 
 export default useParentWidth;

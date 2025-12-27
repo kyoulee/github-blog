@@ -11,7 +11,7 @@ function GlobalLayout({ children }: { children: ReactNode }) {
   const content = useRef<HTMLDivElement>(null);
 
   return (
-    <GolbalLayoutSplit childrenNav={GlobalLayoutSidebar()} childrenFooter={GlobalLayoutFooter()} className="relative ">
+    <GolbalLayoutSplit childrenNav={GlobalLayoutSidebar()} childrenFooter={GlobalLayoutFooter()} className="relative">
       <GlobalLayoutHeader content={content} />
       <div style={{color : '#c9d1d9'}} ref={content}>
         {children}

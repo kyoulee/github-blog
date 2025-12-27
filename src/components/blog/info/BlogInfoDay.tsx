@@ -16,14 +16,14 @@ const GITHUB_REPO_URL = `https://api.github.com/repos/${config.githubId}/${confi
  */
 export async function getBlogDaysSinceCreation(): Promise<number> {
   const response = await fetch(GITHUB_REPO_URL, {
-    next: { revalidate: 3600 }, 
+    next: { revalidate: 3600 },
   });
-  
+
   if (!response.ok) {
     console.error(`GitHub API 호출 실패: ${response.statusText}`);
-    return 0; 
+    return 0;
   }
-  
+
   const data = await response.json();
   const createdAtString: string = data.created_at;
 
@@ -36,11 +36,11 @@ export async function getBlogDaysSinceCreation(): Promise<number> {
   const currentDate = new Date();
 
   const timeDifferenceMs = currentDate.getTime() - createdDate.getTime();
-  
+
   // 밀리초를 일(Day)로 변환
   const daysDifference = Math.floor(timeDifferenceMs / (1000 * 60 * 60 * 24));
 
-  return daysDifference; 
+  return daysDifference;
 }
 
 /**
@@ -52,10 +52,15 @@ export async function getBlogDaysSinceCreation(): Promise<number> {
  * @returns React.JSX.Element (BlogInfoBase 컴포넌트)
  */
 async function BlogInfoDay() {
-  const totalDays = await getBlogDaysSinceCreation();
+
+  const isDev = process.env.NODE_ENV == "development";
+  let totalDays = 1;
+
+  if (!isDev)
+    totalDays = await getBlogDaysSinceCreation();
 
   return (
-    <BlogInfoBase 
+    <BlogInfoBase
       data={totalDays}
       description='운영일'
       icon={CalendarIcon}
