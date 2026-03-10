@@ -2,40 +2,48 @@ name: Build on Submodule Update
 
 on:
   push:
-    branches:
-      - main
-      - dev
+    branches: [main]
+  pull_request:
+    branches: [main, dev]
   repository_dispatch:
     types: [submodule-updated]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      IS_DEPLOY_ENV: 'true'
     steps:
-      - name: Checkout main repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           submodules: true
 
-      - name: Update Submodules to Latest Commit
+      - name: Update Submodules
+        run: git submodule update --init --recursive --remote
+
+      - name: Build
         run: |
-          git submodule update --init --recursive --remote # --remote로 최신 커밋을 가져옵니다.
+          npm ci
+          npm run build
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: '24' 
-      
-      - name: Install dependencies
-        run: npm ci 
+          path: ./out
 
-      - name: Build project
-        run: npm run build
-        
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          publish_branch: gh-pages
-          #cname:  커스텀 도메인(예: example.com)
+        id: deployment
+        uses: actions/deploy-pages@v4

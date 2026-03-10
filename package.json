@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node ./src/systems/build/copyImageFiles.ts",
+    "prebuild": "npx tsx ./src/systems/build/copyImageFiles.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -36,6 +36,7 @@
     "remark-math": "^6.0.0",
     "remark-mdx-frontmatter": "^5.2.0",
     "shiki": "^3.15.0",
+    "tsx": "^4.21.0",
     "typescript-plugin-css-modules": "^5.2.0"
   },
   "devDependencies": {

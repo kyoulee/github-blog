@@ -20,10 +20,12 @@ export type MetadataProps = {
  * 해당 파일이 빌드 시 존재하고 컴파일된 경우에만 정상 작동합니다.
  */
 export async function createPostMetadata(props: MetadataProps): Promise<Metadata> {
-  const PROD_URL =
-    config.BlogBaseUrl || process.env.NEXT_PUBLIC_VERCEL_URL
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : "http://localhost:3000";
+  
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  
+  const domain = process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000";
+  const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+  const baseUrl = `${protocol}://${domain}${basePath}`;
 
   try {
     const slug = (await props.params).slug
@@ -31,10 +33,10 @@ export async function createPostMetadata(props: MetadataProps): Promise<Metadata
 
     const ogTitle = frontmatter ? frontmatter.title || config.BlogTitle : config.BlogTitle;
     const description = frontmatter ? frontmatter.description || config.BlogDescription : config.BlogDescription;
-    const ogImage = frontmatter ? frontmatter.image || config.BlogImageUrl : config.BlogImageUrl;
+    const ogImage = frontmatter ? frontmatter.image || process.env.NEXT_PUBLIC_BASE_PATH + "/post/templates/images/default-og-image.jpg" : process.env.NEXT_PUBLIC_BASE_PATH + "/post/templates/images/default-og-image.jpg";
 
     return {
-      metadataBase: new URL(PROD_URL),
+      metadataBase: new URL(baseUrl),
       title: ogTitle,
       description: description,
       openGraph: {

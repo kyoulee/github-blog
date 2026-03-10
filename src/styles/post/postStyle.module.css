@@ -1,3 +1,12 @@
+.markdown-body img {
+  max-height: 400px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px;
+}
+
 .navigation {
     display: flex;
     justify-content: space-between;
@@ -59,3 +68,4 @@
 .next .title {
     text-align: right;
 }
+
