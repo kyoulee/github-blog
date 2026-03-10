@@ -37,7 +37,7 @@ export default async function PostLayout(props: PostLayoutProps) {
 
   const id = markdownModule.frontmatter?.id ?? undefined;
   const title = markdownModule.frontmatter?.title ?? "Default Title";
-  const image = markdownModule.frontmatter?.image ?? null;
+  const preview = markdownModule.frontmatter?.preview ?? null;
   const date = markdownModule.frontmatter?.created ?? null;
   const author = markdownModule.frontmatter?.author ?? "kyoulee";
   const readTime = markdownModule.frontmatter?.readtime ?? null;
@@ -45,7 +45,7 @@ export default async function PostLayout(props: PostLayoutProps) {
 
   return (
     <PostSlugLayout
-      Header={<PostHeader author={author} date={date} title={title} image={image} readTime={readTime} tags={tags} />}
+      Header={<PostHeader author={author} date={date} title={title} preview={preview} readTime={readTime} tags={tags} />}
       Footer={<PostFooter id={id} slug={slug} />}
     >
       {props.children}

@@ -23,7 +23,7 @@ async function Postlists() {
       <div className={styles.latestPostArea}>
         <h2 className={styles.sectionTitle}>최신 포스트</h2>
         <LargeCard
-          coverImage={fristPost?.frontmatter?.image}
+          coverImage={fristPost?.frontmatter?.preview}
           date={fristPost?.frontmatter?.created ?? ""}
           slug={fristPost?.slug.join("/") ?? ""}
           summary={fristPost?.frontmatter?.description ?? ""}

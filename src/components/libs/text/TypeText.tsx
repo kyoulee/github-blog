@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './TypeText.module.css'
 
 type TypingTextProps = {
@@ -23,15 +23,23 @@ export default function TypeText({
   ...props: any
 ) {
   const [displayText, setDisplayText] = useState('⠀');
-  const [animationStatus, setAnimationStatus] = useState(true);
+  //const [animationStatus, setAnimationStatus] = useState(true);
+  const isRunning = useRef(true);
 
   useEffect(() => {
-    setAnimationStatus(true)
-    typingAnimation({ texts, displayText, setDisplayText, animationStatus } as TypingAnimationProps);
-    return (
-      setAnimationStatus(false)
-    );
-  }, []);
+    isRunning.current = true;
+    const run = async () => {
+      while (isRunning.current) {
+        typingAnimation({ texts, displayText, setDisplayText, isRunning } as TypingAnimationProps);
+        if (!isRunning.current) break;
+      }
+    };
+    run();
+
+    return () => {
+      isRunning.current = false;
+    };
+  }, [texts]);
 
   return (
     <div className={`font-mono ${className}`}>
@@ -45,7 +53,7 @@ type TypingAnimationProps = {
   texts: string[];
   displayText: string;
   setDisplayText: React.Dispatch<React.SetStateAction<string>>;
-  animationStatus: boolean;
+  isRunning : React.Reference;
 }
 
 /**
@@ -64,7 +72,7 @@ async function typingAnimation(
   let currentTextIndex = 0;
   let currentIndex = 0;
 
-  while (props.animationStatus) {
+  while (props.isRunning) {
     const currentText = props.texts[currentTextIndex];
     for (let i = currentIndex; i <= currentText.length; i++) {
       props.setDisplayText("⠀" + currentText.slice(0, i));

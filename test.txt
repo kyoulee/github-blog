@@ -1,0 +1,3 @@
+Bootstrap failed: 5: Input/output error
+Try re-running the command as root for richer errors.
+Error: Failure while executing; `/bin/launchctl bootstrap gui/501 /Users/liebespaar93/Library/LaunchAgents/homebrew.mxcl.nginx.plist` exited with 5.

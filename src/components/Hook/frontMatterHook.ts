@@ -31,7 +31,7 @@ export async function createPostMetadata(props: MetadataProps): Promise<Metadata
 
     const ogTitle = frontmatter ? frontmatter.title || config.BlogTitle : config.BlogTitle;
     const description = frontmatter ? frontmatter.description || config.BlogDescription : config.BlogDescription;
-    const ogImage = frontmatter ? frontmatter.image || config.BlogImageUrl : config.BlogImageUrl;
+    const ogImage = frontmatter ? frontmatter.preview || config.BlogImageUrl : config.BlogImageUrl;
 
     return {
       metadataBase: new URL(PROD_URL),

@@ -8,7 +8,7 @@ import headerStyle from "@/styles/header/headerStyle.module.css";
 type PostHeaderProps = {
   author: string;
   title: string;
-  image: string | null;
+  preview: string | null;
   date: string | null;
   readTime: string | null;
   tags: string[];
@@ -17,7 +17,7 @@ type PostHeaderProps = {
 async function PostHeader(props: PostHeaderProps) {
   return (
     <div className={headerStyle.header}>
-      <div className={headerStyle.content} style={{ backgroundImage: `url(${props.image ?? defaultImage.src})` }}>
+      <div className={headerStyle.content} style={{ backgroundImage: `url(${props.preview ?? defaultImage.src})` }}>
         <div className={headerStyle.title}>default Title</div>
         <div className={headerStyle.meta}>
           <div className={headerStyle.metaItem}>
