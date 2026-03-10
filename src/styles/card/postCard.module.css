@@ -1,0 +1,64 @@
+/* styles/blog/postCard.module.css */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #161b22; /* gh-card-bg */
+    border: 1px solid #30363d; /* gh-border */
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 100%; /* 그리드 내에서 높이 통일 */
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #8b949e;
+    background-color: #1c2128;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.postTitle {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #58a6ff; /* gh-blue-link */
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #8b949e; /* gh-text-secondary */
+    line-height: 1.5;
+    margin-bottom: 16px;
+    /* 세 줄 이상 시 말줄임표 처리 */
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #6e7681;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tag {
+    background-color: #21262d;
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+    font-size: 0.75rem;
+}

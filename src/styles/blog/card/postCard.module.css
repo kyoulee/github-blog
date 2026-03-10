@@ -1,0 +1,174 @@
+/* src/components/PostCard.module.css */
+
+/* --- 0. 테마 변수 설정 (Light Mode 기본) --- */
+.cardLink {
+    /* [Light Mode] GitHub Default */
+    --gh-bg: #ffffff;
+    --gh-border: #d0d7de;
+    --gh-text-primary: #1f2328;
+    --gh-text-secondary: #656d76;
+    --gh-hover-border: #0969da;
+    --gh-hover-bg: #f6f8fa;
+    --gh-img-bg: #eaeef2;
+    --gh-shadow: rgba(0, 0, 0, 0.08);
+
+    /* GitHub가 사용하는 시스템 폰트 스택 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    
+    /* 텍스트 렌더링 최적화 */
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- [Dark Mode] 다크모드 오버라이딩 --- */
+/* 1. 시스템 설정이 다크모드일 때 */
+@media (prefers-color-scheme: dark) {
+    .cardLink {
+        /* [Dark Mode] GitHub Dark Dimmed */
+        --gh-bg: #22272e;          /* 짙은 남색 계열 배경 */
+        --gh-border: #444c56;      /* 경계선은 조금 더 밝게 */
+        --gh-text-primary: #adbac7;/* 눈이 편한 연한 회색 */
+        --gh-text-secondary: #768390;
+        --gh-hover-border: #539bf5;/* 호버 시 밝은 파랑 */
+        --gh-hover-bg: #2d333b;    /* 호버 배경 */
+        --gh-img-bg: #373e47;      /* 이미지 로딩 배경 */
+        --gh-shadow: rgba(0, 0, 0, 0.5); /* 그림자는 더 진하게 */
+    }
+}
+
+/* 2. (선택사항) JS로 제어하는 다크모드 클래스(.dark) 지원 */
+/* :global 키워드는 CSS Module에서 전역 클래스를 참조할 때 사용 */
+:global(.dark) .cardLink {
+    --gh-bg: #22272e;
+    --gh-border: #444c56;
+    --gh-text-primary: #adbac7;
+    --gh-text-secondary: #768390;
+    --gh-hover-border: #539bf5;
+    --gh-hover-bg: #2d333b;
+    --gh-img-bg: #373e47;
+    --gh-shadow: rgba(0, 0, 0, 0.5);
+}
+
+
+/* --- 1. 공통 스타일 (변수 적용) --- */
+
+.cardLink {
+    display: block;
+    background-color: var(--gh-bg); /* 배경색 변수 사용 */
+    border: 1px solid var(--gh-border); /* 테두리 변수 사용 */
+    border-radius: 6px;
+    transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+.cardLink:hover {
+    cursor: pointer;
+    border-color: var(--gh-hover-border);
+    box-shadow: 0 4px 12px var(--gh-shadow);
+    transform: translateY(-2px);
+}
+
+.postTitle {
+    color: var(--gh-text-primary); /* 텍스트 색상 변수 */
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s;
+}
+
+.cardLink:hover .postTitle {
+    color: var(--gh-hover-border); /* 호버 시 파란색 포인트 */
+}
+
+.postSummary {
+    color: var(--gh-text-secondary); /* 보조 텍스트 색상 변수 */
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+
+/* --- 2. Large Card 전용 --- */
+
+.largeCardLink {
+    display: flex;
+    flex-direction: column;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    height: 0; 
+    overflow: hidden;
+    background-color: var(--gh-img-bg); /* 이미지 배경 변수 */
+    border-bottom: 1px solid var(--gh-border);
+}
+
+.postImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease-in-out;
+    
+    /* 다크모드에서 이미지가 너무 쨍하면 눈 아플 수 있어 살짝 필터 처리 (선택) */
+    opacity: 0.95; 
+}
+
+.largeCardLink:hover .postImage {
+    transform: scale(1.03);
+    opacity: 1; /* 호버하면 원래 밝기로 */
+}
+
+.contentArea {
+    padding: 1.5rem;
+    background: var(--gh-bg); /* 컨텐츠 영역 배경 */
+    flex-grow: 1;
+}
+
+.largePostTitle {
+    font-size: 1.5rem; 
+    margin-bottom: 0.5rem;
+    line-clamp: 2;
+}
+
+.largePostSummary {
+    font-size: 1rem;
+    line-clamp: 3;
+}
+
+
+/* --- 3. Small Card 전용 --- */
+
+.smallCardLink {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.smallCardLink:hover {
+    background-color: var(--gh-hover-bg); /* 호버 시 배경색 변경 */
+}
+
+.smallPostTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    line-clamp: 1;
+}
+
+.smallPostSummary {
+    font-size: 0.9rem;
+    line-clamp: 2;
+}

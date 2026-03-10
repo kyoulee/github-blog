@@ -1,0 +1,13 @@
+.headerContainer {
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+  left: 0;
+}
+
+@media (min-width: 1400px) {
+  .headerContainer {
+    width: calc(100% - 296px);
+    left: 296px;
+  }
+}

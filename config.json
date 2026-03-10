@@ -1,0 +1,30 @@
+{
+  "BlogBaseUrl" : "",
+  "BlogTitle" : "kyoulee blog",
+  "BlogDescription" : "About kyoulee Life",
+  "BlogMessages": [
+    "Story of My Life",
+    "I build a world you can visit.",
+    "The way forward is the only way."
+  ],
+  "BlogImageUrl": "/images/github/github-world-building/github-world-building.gif",
+  "PostDir": "/src/posts",
+  "maxFileUploadSize": "10MB",
+  "defaultLanguage": "ko",
+  "githubId" : "kyoulee",
+  "githubRepo" : "github-blog-obsidian",
+  "giscusRepoId" : "R_kgDOQQ4l-g",
+  "giscusCategory" : "Posts",
+  "giscusCategoryId" : "DIC_kwDOQQ4l-s4Cxhtg",
+  "socialLinks": {
+    "github": "https://github.com/kyoulee",
+    "linkedin": "#",
+    "twitter": "",  
+    "facebook": "",
+    "instagram": "",
+    "youtube": "https://www.youtube.com/@kyoulee42",
+    "twitch": "",
+    "email": "mailto:kyoulee@gmail.com"
+  },
+  "profileDescription" : "being remembered by someone"
+}

@@ -1,0 +1,136 @@
+/* styles/blog/githubFollow/githubFollower.module.css */
+
+/* --- 0. 테마 변수 설정 (제공해주신 PostCard 스타일 기반) --- */
+.container {
+    /* [Light Mode] GitHub Default */
+    --gh-bg: #ffffff;
+    --gh-border: #d0d7de;
+    --gh-header-bg: #f6f8fa; /* 헤더용 약간 어두운 배경 */
+    --gh-text-primary: #1f2328;
+    --gh-text-secondary: #656d76;
+    --gh-hover-border: #0969da;
+    --gh-avatar-border: rgba(27, 31, 36, 0.15);
+    --gh-shadow: rgba(0, 0, 0, 0.08);
+
+    /* 폰트 설정 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- [Dark Mode] 다크모드 오버라이딩 --- */
+@media (prefers-color-scheme: dark) {
+    .container {
+        --gh-bg: #22272e;
+        --gh-border: #444c56;
+        --gh-header-bg: #2d333b; /* 헤더도 다크하게 */
+        --gh-text-primary: #adbac7;
+        --gh-text-secondary: #768390;
+        --gh-hover-border: #539bf5;
+        --gh-avatar-border: rgba(240, 246, 252, 0.1);
+        --gh-shadow: rgba(0, 0, 0, 0.5);
+    }
+}
+
+:global(.dark) .container {
+    --gh-bg: #22272e;
+    --gh-border: #444c56;
+    --gh-header-bg: #2d333b;
+    --gh-text-primary: #adbac7;
+    --gh-text-secondary: #768390;
+    --gh-hover-border: #539bf5;
+    --gh-avatar-border: rgba(240, 246, 252, 0.1);
+    --gh-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* --- 1. 메인 컨테이너 (GitHub Box Style) --- */
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gh-bg);
+    border: 1px solid var(--gh-border);
+    border-radius: 6px;
+    overflow: hidden; /* 자식이 둥근 모서리 넘치지 않게 */
+    margin-bottom: 1rem;
+}
+
+/* --- 2. 헤더 영역 --- */
+.header {
+    background-color: var(--gh-header-bg);
+    padding: 16px;
+    border-bottom: 1px solid var(--gh-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gh-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* GitHub 스타일 숫자 뱃지 (Counter) */
+.counter {
+    background-color: rgba(175, 184, 193, 0.2); /* 반투명 회색 */
+    color: var(--gh-text-primary);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    line-height: 1;
+}
+
+/* --- 3. 리스트 영역 --- */
+.listContainer {
+    padding: 16px;
+    background-color: var(--gh-bg);
+}
+
+.userList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* 아바타 간격 */
+}
+
+/* --- 4. 아바타 아이템 & 호버 효과 (핵심!) --- */
+.imageWrapper {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 쫀득한 느낌의 베지에 곡선 */
+    z-index: 1;
+}
+
+/* 🚀 귀여운 호버 효과: 위로 톡! */
+.imageWrapper:hover {
+    transform: translateY(-6px) scale(1.05); /* 위로 올라가면서 살짝 커짐 */
+    z-index: 10;
+}
+
+.avatarImage {
+    display: block;
+    border-radius: 50%; /* 완전 원형 */
+    border: 1px solid var(--gh-avatar-border);
+    background-color: var(--gh-header-bg); /* 로딩 전 배경색 */
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* 호버 시 그림자와 테두리 강조 */
+.imageWrapper:hover .avatarImage {
+    border-color: var(--gh-hover-border);
+    box-shadow: 0 8px 16px var(--gh-shadow);
+}
+
+/* --- 5. 에러 및 빈 상태 메시지 --- */
+.message {
+    padding: 20px;
+    text-align: center;
+    color: var(--gh-text-secondary);
+    font-size: 14px;
+}
+
+.errorMessage {
+    color: #cf222e; /* GitHub Error Red */
+}
