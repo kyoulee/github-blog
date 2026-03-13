@@ -21,7 +21,10 @@ import { wikiLinskUrlResolver } from "@/systems/remark/wikiLinkUrlResolver";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  reactStrictMode: true,
   output: "export",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || undefined,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 

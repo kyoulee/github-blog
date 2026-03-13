@@ -7,7 +7,7 @@ import 'katex/dist/katex.min.css';
 import faviconLight from "@/app/favicon/favicon-light.svg";
 import faviconDark from "@/app/favicon/favicon-dark.svg";
 
-import PrimerProvider from "@/app/themes/PrimerProvider";
+import PrimerProvider from "@/components/themes/PrimerProvider";
 import GlobalLayout from "@/components/global/GlobalLayout";
 
 export const metadata: Metadata = {

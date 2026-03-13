@@ -11,17 +11,20 @@ type GlobalLayoutPageHeaderProps = {
 };
 
 export default function BlogLayout(props: GlobalLayoutPageHeaderProps) {
-  const BlogImageUrl = config.BlogImageUrl;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+  const BlogImageUrl = basePath + config.BlogImageUrl;
+
   return (
     <div>
       <GlobalLayoutPageHeader className="relative">
         <TitleImage imageUrl={BlogImageUrl} />
         <BlogHeader />
-      </GlobalLayoutPageHeader>
-      <PageLayout>
-        {props.children}
-        {/* <GlobalPageLayoutFooter /> */}
-      </PageLayout>
+        </GlobalLayoutPageHeader>
+        <PageLayout>
+          {props.children}
+          {/* <GlobalPageLayoutFooter /> */}
+        </PageLayout>
     </div>
   );
 }

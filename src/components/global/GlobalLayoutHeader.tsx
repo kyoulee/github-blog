@@ -18,6 +18,7 @@ function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
   const nickName = config.githubId;
   const pathname = usePathname();
   const isPostPage = pathname?.startsWith('/post/');
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   function handleScroll(e: Event) {
     if (e.type !== "scroll") return;
@@ -52,21 +53,21 @@ function GlobalLayoutHeader(props: GlobalLayoutHeaderProps) {
       {/* ------------------ 왼쪽 영역 ------------------ */}
       <div className="flex">
         <Header.Item>
-          <Header.Link href="#">
+          <Header.Link href={`${basePath}`}>
             <MarkGithubIcon size={32} />
           </Header.Link>
         </Header.Item>
         <Header.Item>
-          <Header.Link href="/post">Post</Header.Link>
+          <Header.Link href={`${basePath}/post`}>Post</Header.Link>
         </Header.Item>
         <Header.Item>
-          <Header.Link href="/profile">Profile</Header.Link>
+          <Header.Link href={`${basePath}/profile`}>Profile</Header.Link>
         </Header.Item>
       </div>
       {/* ------------------ 중앙 영역 ------------------ */}
       <Header.Item full className="justify-center">
         <Header.Item>
-          <Header.Link href="/">{nickName} Blog</Header.Link>
+          <Header.Link href={`${basePath}`}>{nickName} Blog</Header.Link>
         </Header.Item>
       </Header.Item>
       {/* ------------------ 오른쪽 영역 ------------------ */}

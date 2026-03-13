@@ -45,7 +45,7 @@ async function PageNavigation(props: PageNavigationProps) {
 
   return (
     <nav className={styles.navigation}>
-      {prevPost ? <NaviLink type="prev" url={`/post/${prevPost.slug.join('/')}`} title={prevPost.frontmatter?.title ?? "무제"} label="다음 페이지"></NaviLink> : <div className={styles.emptyLink}></div>}
+      {prevPost ? <NaviLink type="prev" url={`/post/${prevPost.slug.join('/')}`} title={prevPost.frontmatter?.title ?? "무제"} label="이전 페이지"></NaviLink> : <div className={styles.emptyLink}></div>}
       {nextPost ? <NaviLink type="next" url={`/post/${nextPost.slug.join('/')}`} title={nextPost.frontmatter?.title ?? "무제"} label="다음 페이지"></NaviLink> : <div className={styles.emptyLink}></div>}
     </nav>
   );
